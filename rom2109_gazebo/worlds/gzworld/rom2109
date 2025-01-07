@@ -1,6 +1,91 @@
-<?xml version='1.0'?>
-<sdf version="1.4">
-  <model name='rom2109_tall'>
+<sdf version='1.6'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose frame=''>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_bitmask>65535</collide_bitmask>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics name='default_physics' default='0' type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <audio>
+      <device>default</device>
+    </audio>
+    <wind/>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <model name='rom2109'>
       <link name='base_link'>
         <pose frame=''>0 0 0 0 -0 0</pose>
         <inertial>
@@ -20,7 +105,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>model://rom2109_tall/meshes/tall/base_link.STL</uri>
+              <uri>/home/ghostman/ros2/ros2_ws/src/rom2109_description/meshes/base_link.STL</uri>
             </mesh>
           </geometry>
           <surface>
@@ -42,7 +127,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>model://rom2109_tall/meshes/tall/plate1.STL</uri>
+              <uri>/home/ghostman/ros2/ros2_ws/src/rom2109_description/meshes/plate1.STL</uri>
             </mesh>
           </geometry>
           <surface>
@@ -64,7 +149,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>model://rom2109_tall/meshes/tall/camera.STL</uri>
+              <uri>/home/ghostman/ros2/ros2_ws/src/rom2109_description/meshes/camera.STL</uri>
             </mesh>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -86,7 +171,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>model://rom2109_tall/meshes/tall/lidar.STL</uri>
+              <uri>/home/ghostman/ros2/ros2_ws/src/rom2109_description/meshes/lidar.STL</uri>
             </mesh>
           </geometry>
           <surface>
@@ -108,7 +193,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>model://rom2109_tall/meshes/tall/plate2.STL</uri>
+              <uri>/home/ghostman/ros2/ros2_ws/src/rom2109_description/meshes/plate2.STL</uri>
             </mesh>
           </geometry>
           <surface>
@@ -130,7 +215,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>model://rom2109_tall/meshes/tall/plate3.STL</uri>
+              <uri>/home/ghostman/ros2/ros2_ws/src/rom2109_description/meshes/plate3.STL</uri>
             </mesh>
           </geometry>
           <surface>
@@ -152,7 +237,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>model://rom2109_tall/meshes/tall/base_link.STL</uri>
+              <uri>/home/ghostman/ros2/ros2_ws/src/rom2109_description/meshes/base_link.STL</uri>
             </mesh>
           </geometry>
           <material>
@@ -167,7 +252,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>model://rom2109_tall/meshes/tall/plate1.STL</uri>
+              <uri>/home/ghostman/ros2/ros2_ws/src/rom2109_description/meshes/plate1.STL</uri>
             </mesh>
           </geometry>
           <material>
@@ -182,7 +267,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>model://rom2109_tall/meshes/tall/camera.STL</uri>
+              <uri>/home/ghostman/ros2/ros2_ws/src/rom2109_description/meshes/camera.STL</uri>
             </mesh>
           </geometry>
         </visual>
@@ -191,7 +276,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>model://rom2109_tall/meshes/tall/lidar.STL</uri>
+              <uri>/home/ghostman/ros2/ros2_ws/src/rom2109_description/meshes/lidar.STL</uri>
             </mesh>
           </geometry>
           <material>
@@ -206,7 +291,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>model://rom2109_tall/meshes/tall/plate2.STL</uri>
+              <uri>/home/ghostman/ros2/ros2_ws/src/rom2109_description/meshes/plate2.STL</uri>
             </mesh>
           </geometry>
           <material>
@@ -221,7 +306,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>model://rom2109_tall/meshes/tall/plate3.STL</uri>
+              <uri>/home/ghostman/ros2/ros2_ws/src/rom2109_description/meshes/plate3.STL</uri>
             </mesh>
           </geometry>
           <material>
@@ -234,78 +319,40 @@
         <velocity_decay/>
         <velocity_decay/>
         <velocity_decay/>
-        <sensor name="hls_lfcd_lds" type="ray">
-          <always_on>true</always_on>
-          <visualize>true</visualize>
-          <pose>-0.064 0 0.242 0 0 0</pose>
-          <update_rate>5</update_rate>
+        <sensor name='head_hokuyo_sensor' type='ray'>
+          <visualize>1</visualize>
+          <update_rate>40</update_rate>
           <ray>
             <scan>
               <horizontal>
-                <samples>360</samples>
-                <resolution>1.000000</resolution>
-                <min_angle>0.000000</min_angle>
-                <max_angle>6.280000</max_angle>
+                <samples>720</samples>
+                <resolution>1</resolution>
+                <min_angle>-1.5708</min_angle>
+                <max_angle>1.5708</max_angle>
               </horizontal>
+              <vertical>
+                <samples>1</samples>
+                <min_angle>0</min_angle>
+                <max_angle>0</max_angle>
+              </vertical>
             </scan>
             <range>
-              <min>0.130000</min>
+              <min>0.1</min>
               <max>30</max>
-              <resolution>0.01000</resolution>
+              <resolution>0.01</resolution>
             </range>
             <noise>
               <type>gaussian</type>
-              <mean>0.0</mean>
+              <mean>0</mean>
               <stddev>0.01</stddev>
             </noise>
           </ray>
-          <plugin name="amazon_robot_laserscan" filename="libgazebo_ros_ray_sensor.so">
-            <ros>
-                        <!-- <namespace>/tb3</namespace> -->
-              <remapping>~/out:=scan</remapping>
-            </ros>
-            <output_type>sensor_msgs/LaserScan</output_type>
-            <frame_name>lidar</frame_name>
-          </plugin>
-          <pose frame=''>-0.016132 -3.6e-05 0.20083 0 -0 0</pose>
-        </sensor>
-        <sensor type="camera" name="camera1">
-          <update_rate>30.0</update_rate>
-          <camera name="head">
-          <horizontal_fov>1.3962634</horizontal_fov>
-          <image>
-            <width>800</width>
-            <height>800</height>
-            <format>R8G8B8</format>
-          </image>
-          <clip>
-            <near>0.02</near>
-            <far>300</far>
-          </clip>
-          <noise>
-            <type>gaussian</type>
-              <!-- Noise is sampled independently per pixel on each frame.
-               That pixel's noise value is added to each of its color
-               channels, which at that point lie in the range [0,1]. -->
-            <mean>0.0</mean>
-            <stddev>0.007</stddev>
-          </noise>
-          </camera>
-          <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-            <alwaysOn>true</alwaysOn>
-            <updateRate>0.0</updateRate>
-            <cameraName>camera1</cameraName>
-            <imageTopicName>image_raw</imageTopicName>
-            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+          <plugin name='gazebo_ros_head_hokuyo_controller' filename='libgazebo_ros_laser.so'>
+            <topicName>/scan</topicName>
             <frameName>lidar</frameName>
-            <hackBaseline>0.07</hackBaseline>
-            <distortionK1>0.0</distortionK1>
-            <distortionK2>0.0</distortionK2>
-            <distortionK3>0.0</distortionK3>
-            <distortionT1>0.0</distortionT1>
-            <distortionT2>0.0</distortionT2>
+            <robotNamespace>/</robotNamespace>
           </plugin>
-          <pose frame=''>-0.03 -3.6e-05 0.5 0 -0 0</pose>
+          <pose frame=''>0.012125 -0.00158 0.18765 0 -0 0</pose>
         </sensor>
         <velocity_decay/>
         <gravity>1</gravity>
@@ -333,7 +380,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>model://rom2109_tall/meshes/tall/left_wheel.STL</uri>
+              <uri>/home/ghostman/ros2/ros2_ws/src/rom2109_description/meshes/left_wheel.STL</uri>
             </mesh>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -355,7 +402,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>model://rom2109_tall/meshes/tall/left_wheel.STL</uri>
+              <uri>/home/ghostman/ros2/ros2_ws/src/rom2109_description/meshes/left_wheel.STL</uri>
             </mesh>
           </geometry>
         </visual>
@@ -398,7 +445,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>model://rom2109_tall/meshes/tall/right_wheel.STL</uri>
+              <uri>/home/ghostman/ros2/ros2_ws/src/rom2109_description/meshes/right_wheel.STL</uri>
             </mesh>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -420,7 +467,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>model://rom2109_tall/meshes/tall/right_wheel.STL</uri>
+              <uri>/home/ghostman/ros2/ros2_ws/src/rom2109_description/meshes/right_wheel.STL</uri>
             </mesh>
           </geometry>
         </visual>
@@ -447,20 +494,15 @@
       <plugin name='gazebo_ros_control' filename='libgazebo_ros_contol.so'>
         <robotNamespace>/</robotNamespace>
       </plugin>
-      <plugin name="gazebo_ros_joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
-        <update_rate>20</update_rate>
-        <joint_name>left_wheel_joint</joint_name>
-        <joint_name>right_wheel_joint</joint_name>
-      </plugin>
       <static>0</static>
       <plugin name='differential_drive_controller' filename='libgazebo_ros_diff_drive.so'>
         <alwaysOn>1</alwaysOn>
         <legacyMode>1</legacyMode>
         <updateRate>100</updateRate>
-        <left_joint>right_wheel_joint</left_joint>
-        <right_joint>left_wheel_joint</right_joint>
-        <wheel_separation>0.27</wheel_separation>
-        <wheel_diameter>0.07</wheel_diameter>
+        <leftJoint>right_wheel_joint</leftJoint>
+        <rightJoint>left_wheel_joint</rightJoint>
+        <wheelSeparation>0.27</wheelSeparation>
+        <wheelDiameter>0.07</wheelDiameter>
         <torque>200</torque>
         <commandTopic>cmd_vel</commandTopic>
         <odometryTopic>odom</odometryTopic>
@@ -472,4 +514,53 @@
       </plugin>
       <pose frame=''>0 0 0 0 -0 0</pose>
     </model>
+    <state world_name='default'>
+      <sim_time>10 808000000</sim_time>
+      <real_time>172 307134682</real_time>
+      <wall_time>1675315258 473637304</wall_time>
+      <iterations>10808</iterations>
+      <model name='ground_plane'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='rom2109'>
+        <pose frame=''>0.000345 -0.000594 0.023999 -0.000126 0.033207 0.003061</pose>
+        <scale>1 1 1</scale>
+        <link name='base_link'>
+          <pose frame=''>0.000345 -0.000594 0.023999 -0.000126 0.033207 0.003061</pose>
+          <velocity>0.00023 8.8e-05 -0.000636 0.005724 0.009742 2.7e-05</velocity>
+          <acceleration>0.273298 -3.42425 -3.09805 1.19399 1.30839 -1.22564</acceleration>
+          <wrench>1.33424 -16.7172 -15.1247 0 -0 0</wrench>
+        </link>
+        <link name='left_wheel'>
+          <pose frame=''>0.000909 0.097745 0.050022 -0.000151 0.012437 0.003065</pose>
+          <velocity>0.000481 -0.000131 -6e-05 0.002773 0.009607 0.000211</velocity>
+          <acceleration>0.083861 -0.659069 -0.114686 0.788116 1.46322 -2.56986</acceleration>
+          <wrench>0.241735 -1.89982 -0.330591 0 -0 0</wrench>
+        </link>
+        <link name='right_wheel'>
+          <pose frame=''>0.001511 -0.09892 0.050047 -0.000102 -0.034302 0.003068</pose>
+          <velocity>0.000482 -0.000187 -0.001234 -0.000241 0.009726 0.000366</velocity>
+          <acceleration>0.095916 -0.838931 -6.04113 -2.58433 1.16244 -2.0478</acceleration>
+          <wrench>0.276487 -2.41829 -17.414 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='sun'>
+        <pose frame=''>0 0 10 0 -0 0</pose>
+      </light>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>5.0361 -5.0499 1.78501 0 0.275643 2.35619</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+  </world>
 </sdf>
