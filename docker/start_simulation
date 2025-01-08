@@ -11,7 +11,7 @@ docker run -it --network='host' \
 --volume='/tmp/.X11-unix:/tmp/.X11-unix:rw' \
 --name rom2109_container \
 -w /rom2109_ws \
-khhtun/humble:latest bash   
+khhtun/humble_test:v2 bash   
 docker stop rom2109_container
 docker rm rom2109_container
 # use latest or prereleasesimulation tag for docker images
