@@ -8,18 +8,19 @@ from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration
 
 def generate_launch_description():
-    gazebo_pkg = get_package_share_directory('rom2109_gazebo')
-    gz_ros_pkg = get_package_share_directory('gazebo_ros')
+    # gazebo_pkg = get_package_share_directory('rom2109_gazebo')
+    # gz_ros_pkg = get_package_share_directory('gazebo_ros')
+    use_sim_time = LaunchConfiguration('use_sim_time')
     
     urdf_pkg = get_package_share_directory('rom2109_description')
-    urdf_path= os.path.join(urdf_pkg, 'urdf', "rom2109_tall.urdf")
+    urdf_path= os.path.join(urdf_pkg, 'urdf/raw', "rom2109_tall.urdf")
     urdf = open(urdf_path).read()
 
     robot_state_publisher_node = Node(
         name="robot_state_publisher",
         package="robot_state_publisher",
         executable="robot_state_publisher",
-        parameters=[{"robot_description": urdf}],
+        parameters=[{"robot_description": urdf, 'use_sim_time': use_sim_time}],
     )
 
     joint_state_node = Node(
