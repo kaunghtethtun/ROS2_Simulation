@@ -23,7 +23,6 @@ endif()
 
 install(
   DIRECTORY
-    config
     launch
     rviz2
     worlds
