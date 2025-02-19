@@ -1,0 +1,72 @@
+docker run -it --rm \
+    --net=host \
+    --privileged \
+    -e DISPLAY=$DISPLAY \
+    -e QT_X11_NO_MITSHM=1 \
+    -e GAZEBO_AUDIO_DEVICE="" \
+    -e PULSE_SERVER=unix:/run/user/$(id -u)/pulse/native \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v /home/khh/Desktop/Docker/ROS2_Simulation/models:/root/models \
+    -v /home/khh/Desktop/Docker/ROS2_Simulation/simulation:/root/ros2_ws/src/simulation \
+    --group-add audio \
+    --name my_container \
+    khhtun/ros2_sim:test bash
+
+
+///-------------------- ok ok ok ok ok ok -gazebo------------------------////
+docker run -it --rm \
+    --net=host \
+    --privileged \
+    -e DISPLAY=$DISPLAY \
+    -e QT_X11_NO_MITSHM=1 \
+    -e XDG_RUNTIME_DIR=/tmp/runtime-root \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v /run/user/$(id -u)/pulse:/run/user/$(id -u)/pulse \
+    --name my_container \
+    khhtun/ros2_sim:test bash
+
+
+//-------------------- ok ok ok ok ok ok -------------------------////
+docker run -it --rm \
+    --net=host \
+    --privileged \
+    -e DISPLAY=$DISPLAY \
+    -e PULSE_SERVER=unix:/run/user/$(id -u)/pulse/native \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v /dev/snd:/dev/snd \
+    -v ~/.config/pulse/cookie:/root/.config/pulse/cookie \
+    -v /home/khh/Desktop/Docker/ROS2_Simulation/models:/root/models\
+    -v /home/khh/Desktop/Docker/ROS2_Simulation/simulation:/root/ros2_ws/src/simulation\
+    --group-add audio \
+    --name my_container \
+    khhtun/ros2_sim:test bash
+
+
+
+
+    #!/bin/bash
+
+# Allow access to X server for GUI applications
+xhost +local:docker
+
+docker run -it --rm \
+    --net=host \
+    --privileged \
+    -e DISPLAY=$DISPLAY \
+    -e QT_X11_NO_MITSHM=1 \
+    -e XDG_RUNTIME_DIR=/tmp/runtime-root \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v /dev/snd:/dev/snd \
+    -v ~/.config/pulse/cookie:/root/.config/pulse/cookie \
+    -v /home/khh/Desktop/Docker/ROS2_Simulation/simulation:/root/ros2_ws/src/simulation\
+    -v /run/user/$(id -u)/pulse:/run/user/$(id -u)/pulse \
+    --group-add audio \
+    --name my_container \
+    khhtun/ros2_sim:test bash
+
+# Remove X server access after running
+xhost -local:docker
+//-------------------- ok ok ok ok ok ok -------------------------////
+
+
+-v /home/khh/Desktop/Docker/ROS2_Simulation/simulation:/root/ros2_ws/src/simulation\

@@ -12,7 +12,7 @@ def generate_launch_description():
     gz_ros_pkg = get_package_share_directory('gazebo_ros')
     
     urdf_pkg = get_package_share_directory('rom2109_description')
-    urdf_path= os.path.join(urdf_pkg, 'urdf', "rom2109_tall.urdf")
+    urdf_path= os.path.join(urdf_pkg, 'urdf', "tall.urdf")
     urdf = open(urdf_path).read()
 
     robot_state_publisher_node = Node(

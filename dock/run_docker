@@ -1,0 +1,22 @@
+  #!/bin/bash
+
+# Allow access to X server for GUI applications
+xhost +local:docker
+
+docker run -it --rm \
+    --net=host \
+    --privileged \
+    -e DISPLAY=$DISPLAY \
+    -e QT_X11_NO_MITSHM=1 \
+    -e XDG_RUNTIME_DIR=/tmp/runtime-root \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v /dev/snd:/dev/snd \
+    -v ~/.config/pulse/cookie:/root/.config/pulse/cookie \
+    -v /run/user/$(id -u)/pulse:/run/user/$(id -u)/pulse \
+    -v /home/khh/Desktop/Docker/worlds:/root/models\
+    --group-add audio \
+    --name my_container \
+    khhtun/ros2_sim:test bash
+
+# Remove X server access after running
+xhost -local:docker

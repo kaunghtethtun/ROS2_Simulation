@@ -1,0 +1,2 @@
+#!/bin/bash
+docker build -t khhtun/ros2_sim:test .
