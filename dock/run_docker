@@ -1,4 +1,4 @@
-  #!/bin/bash
+#!/bin/bash
 
 # Allow access to X server for GUI applications
 xhost +local:docker
@@ -13,7 +13,8 @@ docker run -it --rm \
     -v /dev/snd:/dev/snd \
     -v ~/.config/pulse/cookie:/root/.config/pulse/cookie \
     -v /run/user/$(id -u)/pulse:/run/user/$(id -u)/pulse \
-    -v /home/khh/Desktop/Docker/worlds:/root/models\
+    -v /home/khh/Desktop/Docker/ROS2_Simulation/development/rom2109_nav2:/root/ros2_ws/src/rom2109_nav2/ \
+    -v /home/khh/Desktop/Docker/worlds/test.world:/root/sim/ws/src/simulation/rom2109_gazebo/worlds/test.world \
     --group-add audio \
     --name my_container \
     khhtun/ros2_sim:test bash
